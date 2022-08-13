@@ -38,13 +38,12 @@ export const Modal = () => {
     <AnimatePresence>
       {modal.isOpen && (
         <S.Modal
-          className='modal'
           transition={{ duration: 0.1 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <S.ModalOverlay className='modal-overlay' onClick={handleClose} />
+          <S.ModalOverlay onClick={handleClose} />
           <ModalWindow />
         </S.Modal>
       )}

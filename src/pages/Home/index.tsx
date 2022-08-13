@@ -1,5 +1,12 @@
+import { Directions, Features, Introduce } from './components'
 import * as S from './styles'
 
 export const Home = () => {
-  return <S.Home>Home Page</S.Home>
+  return (
+    <S.Home>
+      <Introduce />
+      <Features />
+      <Directions />
+    </S.Home>
+  )
 }

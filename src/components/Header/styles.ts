@@ -11,6 +11,7 @@ export const Header = styled.header`
   width: 100%;
 
   background-color: #fff;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 12%);
 `
 
 export const HeaderInner = styled.div`
@@ -35,7 +36,7 @@ export const HeaderLogo = styled.div``
 export const HeaderLogoLink = styled(Link)`
   padding: 18px 2px;
 
-  font-size: 1.05rem;
+  font-size: 16px;
   font-weight: 500;
   color: #3f5573;
   text-transform: uppercase;
@@ -98,7 +99,7 @@ export const HeaderLink = styled(Link)<I_HeaderLinkProps>`
   padding: 18px 2px;
 
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: ${({ $isActive }) => ($isActive ? '#149708' : '#000')};
   text-transform: uppercase;
 `
