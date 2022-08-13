@@ -1,0 +1,5 @@
+export { Home } from './Home'
+export { Services } from './Services'
+export { Faq } from './Faq'
+export { Book } from './Book'
+export { NotFound } from './NotFound'
