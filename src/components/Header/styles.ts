@@ -78,14 +78,14 @@ export const HeaderLi = styled.li<I_HeaderLiProps>`
 
     height: 4px;
 
-    background-color: ${({ $isActive }) => ($isActive ? '#3F5573' : 'transparent')};
+    background-color: ${({ $isActive }) => ($isActive ? '#149708' : 'transparent')};
 
     transition: background-color 0.3s;
   }
 
   &:hover {
     &::after {
-      background-color: #3f5573;
+      background-color: #149708;
     }
   }
 `
@@ -99,7 +99,7 @@ export const HeaderLink = styled(Link)<I_HeaderLinkProps>`
 
   font-size: 14px;
   font-weight: 500;
-  color: ${({ $isActive }) => ($isActive ? '#3F5573' : '#000')};
+  color: ${({ $isActive }) => ($isActive ? '#149708' : '#000')};
   text-transform: uppercase;
 `
 
@@ -152,7 +152,7 @@ export const HeaderBookLink = styled(Link)`
   text-align: center;
   text-transform: uppercase;
 
-  background-color: #3f5573;
+  background-color: #149708;
   border-radius: 4px;
   box-shadow: 0 9px 13px 0 rgb(0 0 0 / 34%);
 
