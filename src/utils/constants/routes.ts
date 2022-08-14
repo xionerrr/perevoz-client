@@ -3,6 +3,10 @@ export enum ROUTES {
   services = '/services',
   faq = '/faq',
   book = '/book',
+  partner = '/partner',
+
+  auth = '/auth',
+  admin = '/admin',
 
   notFound = '*',
 }

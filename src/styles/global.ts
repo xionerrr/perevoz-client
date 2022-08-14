@@ -13,6 +13,8 @@ export const GlobalStyles = createGlobalStyle`
     background-color: #fff;
   }
 
+
+
   * {
     box-sizing: border-box;
     margin: 0;

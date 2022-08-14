@@ -46,6 +46,8 @@ export const DirectionsList = styled.div`
   width: 100%;
 
   .swiper {
+    cursor: pointer;
+
     overflow: hidden;
 
     width: 100%;
@@ -65,7 +67,11 @@ export const DirectionsList = styled.div`
   }
 `
 
-export const SwiperPrev = styled.button`
+interface I_SwiperPrevProps {
+  $isBegin: boolean
+}
+
+export const SwiperPrev = styled.button<I_SwiperPrevProps>`
   cursor: pointer;
   user-select: none;
 
@@ -83,10 +89,15 @@ export const SwiperPrev = styled.button`
   font-size: 32px;
   color: #fff;
 
-  background-color: #000;
+  background-color: ${({ $isBegin }) => ($isBegin ? '#777' : '#000')};
+  border: 0;
 `
 
-export const SwiperNext = styled.button`
+interface I_SwiperNextProps {
+  $isEnd: boolean
+}
+
+export const SwiperNext = styled.button<I_SwiperNextProps>`
   cursor: pointer;
 
   position: absolute;
@@ -103,7 +114,8 @@ export const SwiperNext = styled.button`
   font-size: 32px;
   color: #fff;
 
-  background-color: #000;
+  background-color: ${({ $isEnd }) => ($isEnd ? '#777' : '#000')};
+  border: 0;
 `
 
 export const DirectionListItem = styled.div`
@@ -118,6 +130,8 @@ export const DirectionListItemTopSection = styled.div`
 `
 
 export const DirectionListItemTopImage = styled.img`
+  user-select: none;
+
   width: 100%;
   height: 100%;
 
@@ -134,7 +148,7 @@ export const DirectionListItemTitle = styled.div`
   margin-bottom: 0;
   padding: 0 0 10px 20px;
 
-  font-size: 1.875rem;
+  font-size: 32px;
   font-weight: 700;
   color: #fff;
 

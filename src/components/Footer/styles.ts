@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Footer = styled.footer`
-  background-color: #fff;
+  background-color: #232329;
 `
 
 export const FooterInner = styled.div`
@@ -25,7 +25,7 @@ export const FooterLogoButton = styled.button`
 
   font-size: 16px;
   font-weight: 500;
-  color: #3f5573;
+  color: #fff;
   text-transform: uppercase;
 
   background-color: transparent;
@@ -38,7 +38,7 @@ export const FooterLinks = styled.div`
 `
 
 export const FooterLink = styled.a`
-  color: #000;
+  color: #fff;
 
   transition: color 0.3s;
 

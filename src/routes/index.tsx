@@ -1,7 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
 
+import { AuthRoute } from './AuthRoute'
+import { ProtectedRoute } from './ProtectedRoute'
+
+import { AuthLayout } from 'layouts/Auth'
 import { MainLayout } from 'layouts/Main'
-import { Book, Faq, Home, NotFound, Services } from 'pages'
+import { Book, Faq, Home, NotFound, Partner, Services, SignIn } from 'pages'
 import { ROUTES } from 'utils/constants/routes'
 
 export const AppRoutes = () => {
@@ -48,6 +52,29 @@ export const AppRoutes = () => {
           </MainLayout>
         }
       />
+      <Route
+        path={ROUTES.partner}
+        element={
+          <MainLayout>
+            <Partner />
+          </MainLayout>
+        }
+      />
+
+      <Route element={<ProtectedRoute />}>
+        <Route path={ROUTES.admin} element={<AuthLayout>AdminPanel</AuthLayout>} />
+      </Route>
+
+      <Route element={<AuthRoute />}>
+        <Route
+          path={ROUTES.auth}
+          element={
+            <AuthLayout>
+              <SignIn />
+            </AuthLayout>
+          }
+        />
+      </Route>
     </Routes>
   )
 }

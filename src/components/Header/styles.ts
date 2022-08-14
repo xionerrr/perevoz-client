@@ -120,11 +120,16 @@ export const HeaderBookBox = styled.div`
 
 export const HeaderBookPhone = styled.a`
   display: flex;
+  gap: 6px;
   align-items: center;
 
   font-size: 16px;
   font-weight: 500;
   color: #000;
+
+  svg {
+    color: #149708;
+  }
 
   &:hover {
     color: #777;
@@ -132,9 +137,17 @@ export const HeaderBookPhone = styled.a`
 `
 
 export const HeaderBookAdditionalPhone = styled.a`
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
   font-size: 16px;
   font-weight: 500;
   color: #000;
+
+  svg {
+    color: #149708;
+  }
 
   &:hover {
     color: #777;

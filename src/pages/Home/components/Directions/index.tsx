@@ -1,16 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { directionItems } from './data'
 import * as S from './styles'
+
+import { I_DirectionItems } from 'types/Destionation'
 
 enum E_SlideDirections {
   prev = 'prev',
   next = 'next',
 }
 
-export const Directions = () => {
+interface I_DirectionsProps {
+  postDirections: I_DirectionItems[]
+  getPostDirectionsSuccess: boolean
+  getPostDirectionsLoading: boolean
+}
+
+export const Directions = ({
+  postDirections,
+  getPostDirectionsSuccess,
+  getPostDirectionsLoading,
+}: I_DirectionsProps) => {
+  const [isBegin, setIsBegin] = useState<boolean>(false)
+  const [isEnd, setIsEnd] = useState<boolean>(false)
+
   const sliderRef = useRef<any>(null)
 
   const handleChangeDirection = (direction: E_SlideDirections) => () => {
@@ -18,7 +33,16 @@ export const Directions = () => {
     direction === E_SlideDirections.next
       ? sliderRef.current.swiper.slideNext()
       : sliderRef.current.swiper.slidePrev()
+    setIsBegin(sliderRef.current.swiper.isBeginning)
+    setIsEnd(sliderRef.current.swiper.isEnd)
   }
+
+  useEffect(() => {
+    if (sliderRef.current) {
+      setIsBegin(sliderRef.current.swiper.isBeginning)
+      setIsEnd(sliderRef.current.swiper.isEnd)
+    }
+  }, [sliderRef])
 
   return (
     <S.Directions>
@@ -31,6 +55,7 @@ export const Directions = () => {
             }}
             slidesPerView={4}
             spaceBetween={24}
+            allowTouchMove={false}
           >
             {directionItems.map((item, index) => {
               return (
@@ -54,8 +79,12 @@ export const Directions = () => {
               )
             })}
           </Swiper>
-          <S.SwiperPrev onClick={handleChangeDirection(E_SlideDirections.prev)}>‹</S.SwiperPrev>
-          <S.SwiperNext onClick={handleChangeDirection(E_SlideDirections.next)}>›</S.SwiperNext>
+          <S.SwiperPrev onClick={handleChangeDirection(E_SlideDirections.prev)} $isBegin={isBegin}>
+            ‹
+          </S.SwiperPrev>
+          <S.SwiperNext onClick={handleChangeDirection(E_SlideDirections.next)} $isEnd={isEnd}>
+            ›
+          </S.SwiperNext>
         </S.DirectionsList>
       </S.DirectionsInner>
     </S.Directions>

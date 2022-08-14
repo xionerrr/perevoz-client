@@ -1,3 +1,4 @@
+import CallIcon from '@mui/icons-material/Call'
 import { useLocation } from 'react-router-dom'
 
 import { headerItems, numbers } from './data'
@@ -30,8 +31,12 @@ export const Header = () => {
           </S.HeaderNav>
           <S.HeaderBook>
             <S.HeaderBookBox>
-              <S.HeaderBookPhone href={'tel:' + numbers.first}>{numbers.first}</S.HeaderBookPhone>
+              <S.HeaderBookPhone href={'tel:' + numbers.first}>
+                <CallIcon fontSize='small' />
+                {numbers.first}
+              </S.HeaderBookPhone>
               <S.HeaderBookAdditionalPhone href={'tel:' + numbers.second}>
+                <CallIcon fontSize='small' />
                 {numbers.second}
               </S.HeaderBookAdditionalPhone>
             </S.HeaderBookBox>

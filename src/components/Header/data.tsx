@@ -2,6 +2,7 @@ enum E_HeaderLinks {
   home = '/',
   services = '/services',
   faq = '/faq',
+  partner = '/partner',
 }
 
 interface I_HeaderItems {
@@ -22,6 +23,10 @@ export const headerItems: I_HeaderItems[] = [
     label: 'Інформація',
     to: E_HeaderLinks.faq,
   },
+  {
+    label: 'Партнерам',
+    to: E_HeaderLinks.partner,
+  },
 ]
 
 interface I_Numbers {
@@ -30,6 +35,6 @@ interface I_Numbers {
 }
 
 export const numbers: I_Numbers = {
-  first: '+38-096-145-23-14',
-  second: '+38-096-145-23-14',
+  first: '+38-066-658-49-38',
+  second: '+38-097-826-35-33',
 }

@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const MainLayout = styled.div``
+export const MainLayout = styled.div`
+  height: 100%;
+`
 
 export const MainLayoutInner = styled.div`
   width: 100%;
