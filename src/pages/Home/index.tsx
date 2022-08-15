@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
 
-import { Directions, Features, Introduce } from './components'
+import { Directions, HomeFaq, Features, Introduce } from './components'
 import * as S from './styles'
 
 import { postsAPI } from 'services/posts'
@@ -21,13 +21,16 @@ export const Home = () => {
 
   return (
     <S.Home>
-      <Introduce />
-      <Features />
-      <Directions
-        postDirections={postDirections}
-        getPostDirectionsSuccess={getPostDirectionsSuccess}
-        getPostDirectionsLoading={getPostDirectionsLoading}
-      />
+      <S.HomeInner>
+        <Introduce />
+        <Features />
+        <Directions
+          postDirections={postDirections}
+          getPostDirectionsSuccess={getPostDirectionsSuccess}
+          getPostDirectionsLoading={getPostDirectionsLoading}
+        />
+        <HomeFaq />
+      </S.HomeInner>
     </S.Home>
   )
 }

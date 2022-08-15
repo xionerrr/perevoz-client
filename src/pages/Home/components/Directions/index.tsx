@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -80,10 +82,10 @@ export const Directions = ({
             })}
           </Swiper>
           <S.SwiperPrev onClick={handleChangeDirection(E_SlideDirections.prev)} $isBegin={isBegin}>
-            ‹
+            <KeyboardArrowLeftIcon />
           </S.SwiperPrev>
           <S.SwiperNext onClick={handleChangeDirection(E_SlideDirections.next)} $isEnd={isEnd}>
-            ›
+            <KeyboardArrowRightIcon />
           </S.SwiperNext>
         </S.DirectionsList>
       </S.DirectionsInner>

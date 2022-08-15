@@ -81,6 +81,7 @@ export const SwiperPrev = styled.button<I_SwiperPrevProps>`
   transform: translate(-50%, -50%);
 
   display: flex;
+  align-items: center;
   justify-content: center;
 
   width: 48px;
@@ -106,6 +107,7 @@ export const SwiperNext = styled.button<I_SwiperNextProps>`
   transform: translate(50%, -50%);
 
   display: flex;
+  align-items: center;
   justify-content: center;
 
   width: 48px;

@@ -7,7 +7,8 @@ export const Partner = styled.div`
 `
 
 export const PartnerInner = styled.div`
-  width: 100%;
+  width: 90%;
+  min-width: 320px;
   max-width: 1440px;
   margin: 0 auto;
 `
@@ -15,30 +16,30 @@ export const PartnerInner = styled.div`
 export const PartnerTitle = styled.h3`
   margin-bottom: 40px;
 
-  font-size: 30px;
-  text-align: center;
-  text-transform: uppercase;
+  font-size: 64px;
 `
 
 export const PartnerSubTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
   width: 100%;
   max-width: 968px;
-  margin: 0 auto;
   margin-bottom: 40px;
 
   font-size: 21px;
-  text-align: center;
 `
+
+export const PartnerParagraph = styled.p``
 
 export const PartnerPhones = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
-  align-items: flex-end;
 
   width: 100%;
   max-width: 968px;
-  margin: 0 auto;
 `
 
 export const PartnerPhoneLink = styled.a`
