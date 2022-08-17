@@ -3,8 +3,13 @@ type T_Direction = {
   photoUrlPath: string
 }
 
-export interface I_DirectionItems {
+export interface I_DirectionItem {
   country: string
-  directions: T_Direction[]
+  destinations: T_Direction[]
   countryUrlPath: string
+}
+
+export interface I_DestinationItem {
+  startDestination: string
+  finishDestination: string
 }

@@ -6,14 +6,11 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
 
-
     font-family: Montserrat, sans-serif;
     font-size: 16px;
 
     background-color: #fff;
   }
-
-
 
   * {
     box-sizing: border-box;
@@ -39,4 +36,6 @@ export const GlobalStyles = createGlobalStyle`
   a, a:visited {
     text-decoration: none;
   }
+
+
 `

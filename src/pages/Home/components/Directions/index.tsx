@@ -4,10 +4,9 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { directionItems } from './data'
 import * as S from './styles'
 
-import { I_DirectionItems } from 'types/Destionation'
+import { I_DirectionItem } from 'types/Destionation'
 
 enum E_SlideDirections {
   prev = 'prev',
@@ -15,7 +14,7 @@ enum E_SlideDirections {
 }
 
 interface I_DirectionsProps {
-  postDirections: I_DirectionItems[]
+  postDirections: I_DirectionItem[]
   getPostDirectionsSuccess: boolean
   getPostDirectionsLoading: boolean
 }
@@ -29,6 +28,8 @@ export const Directions = ({
   const [isEnd, setIsEnd] = useState<boolean>(false)
 
   const sliderRef = useRef<any>(null)
+
+  const destinationsCount = 4
 
   const handleChangeDirection = (direction: E_SlideDirections) => () => {
     if (!sliderRef.current) return
@@ -55,23 +56,25 @@ export const Directions = ({
             onInit={(core) => {
               sliderRef.current = core.el
             }}
-            slidesPerView={4}
+            slidesPerView={postDirections.length >= 4 ? destinationsCount : 'auto'}
             spaceBetween={24}
             allowTouchMove={false}
           >
-            {directionItems.map((item, index) => {
+            {postDirections.map((item, index) => {
               return (
                 <SwiperSlide key={index}>
                   <S.DirectionListItem>
                     <S.DirectionListItemTopSection>
-                      <S.DirectionListItemTopImage src={item.image} />
-                      <S.DirectionListItemTitle>{item.label}</S.DirectionListItemTitle>
+                      <S.DirectionListItemTopImage
+                        src={import.meta.env.VITE_BACKEND_LINK + item.countryUrlPath}
+                      />
+                      <S.DirectionListItemTitle>{item.country}</S.DirectionListItemTitle>
                     </S.DirectionListItemTopSection>
                     <S.DirectionListItemDetails>
-                      {item.directions.map((direction, index) => {
+                      {item.destinations.map((direction, index) => {
                         return (
                           <S.DirectionListItemDirection key={index}>
-                            {direction}
+                            {direction.destination}
                           </S.DirectionListItemDirection>
                         )
                       })}
@@ -81,12 +84,19 @@ export const Directions = ({
               )
             })}
           </Swiper>
-          <S.SwiperPrev onClick={handleChangeDirection(E_SlideDirections.prev)} $isBegin={isBegin}>
-            <KeyboardArrowLeftIcon />
-          </S.SwiperPrev>
-          <S.SwiperNext onClick={handleChangeDirection(E_SlideDirections.next)} $isEnd={isEnd}>
-            <KeyboardArrowRightIcon />
-          </S.SwiperNext>
+          {postDirections.length > destinationsCount && (
+            <>
+              <S.SwiperPrev
+                onClick={handleChangeDirection(E_SlideDirections.prev)}
+                $isBegin={isBegin}
+              >
+                <KeyboardArrowLeftIcon />
+              </S.SwiperPrev>
+              <S.SwiperNext onClick={handleChangeDirection(E_SlideDirections.next)} $isEnd={isEnd}>
+                <KeyboardArrowRightIcon />
+              </S.SwiperNext>
+            </>
+          )}
         </S.DirectionsList>
       </S.DirectionsInner>
     </S.Directions>

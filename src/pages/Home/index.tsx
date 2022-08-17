@@ -4,10 +4,10 @@ import { Directions, HomeFaq, Features, Introduce } from './components'
 import * as S from './styles'
 
 import { postsAPI } from 'services/posts'
-import { I_DirectionItems } from 'types/Destionation'
+import { I_DirectionItem } from 'types/Destionation'
 
 export const Home = () => {
-  const [postDirections, setPostDirections] = useState<I_DirectionItems[]>([])
+  const [postDirections, setPostDirections] = useState<I_DirectionItem[]>([])
 
   const {
     data: getPostDirections,

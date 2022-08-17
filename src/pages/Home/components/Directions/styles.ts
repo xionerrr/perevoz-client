@@ -46,7 +46,7 @@ export const DirectionsList = styled.div`
   width: 100%;
 
   .swiper {
-    cursor: pointer;
+    cursor: default;
 
     overflow: hidden;
 
@@ -135,7 +135,7 @@ export const DirectionListItemTopImage = styled.img`
   user-select: none;
 
   width: 100%;
-  height: 100%;
+  height: 196px;
 
   object-fit: cover;
 `
