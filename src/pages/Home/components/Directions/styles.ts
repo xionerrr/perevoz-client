@@ -21,9 +21,21 @@ export const Directions = styled.div`
 `
 
 export const DirectionsInner = styled.div`
-  width: 100%;
+  width: 80%;
   max-width: 1440px;
   margin: 0 auto;
+`
+
+export const DirectionsLoader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  min-height: 325px;
+  max-height: auto;
+  padding: 48px;
 `
 
 export const DirectionsTitle = styled.h3`
@@ -32,6 +44,10 @@ export const DirectionsTitle = styled.h3`
   font-size: 30px;
   text-align: center;
   text-transform: uppercase;
+
+  @media (max-width: 625px) {
+    font-size: 28px;
+  }
 `
 
 export const DirectionsList = styled.div`
@@ -90,8 +106,13 @@ export const SwiperPrev = styled.button<I_SwiperPrevProps>`
   font-size: 32px;
   color: #fff;
 
-  background-color: ${({ $isBegin }) => ($isBegin ? '#777' : '#000')};
+  background-color: #000;
   border: 0;
+
+  @media (max-width: 1268px) {
+    bottom: 0;
+    left: 0;
+  }
 `
 
 interface I_SwiperNextProps {
@@ -116,8 +137,13 @@ export const SwiperNext = styled.button<I_SwiperNextProps>`
   font-size: 32px;
   color: #fff;
 
-  background-color: ${({ $isEnd }) => ($isEnd ? '#777' : '#000')};
+  background-color: #000;
   border: 0;
+
+  @media (max-width: 1268px) {
+    right: 0;
+    bottom: 0;
+  }
 `
 
 export const DirectionListItem = styled.div`

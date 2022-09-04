@@ -8,10 +8,18 @@ export const MainLayout = styled.div`
   min-height: 100vh;
 `
 
-export const MainLayoutInner = styled.div`
+interface I_MainLayoutInnerProps {
+  isDesktop: boolean
+  isSidebarOpened: boolean
+  isModalOpened: boolean
+}
+
+export const MainLayoutInner = styled.div<I_MainLayoutInnerProps>`
+  position: relative;
+
   flex-grow: 1;
 
   width: 100%;
   height: 100%;
-  margin-top: 81px;
+  margin-top: ${({ isDesktop }) => (isDesktop ? '81px' : '45px')};
 `

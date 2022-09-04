@@ -7,4 +7,9 @@ export interface I_Modal {
 
 export enum E_Modals {
   feedback = 'feedback',
+  book = 'book',
+  editTrip = 'editTrip',
+  editCountry = 'editCountry',
+  createTrip = 'createTrip',
+  openPhoto = 'openPhoto',
 }

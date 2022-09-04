@@ -14,6 +14,11 @@ export const FooterInner = styled.div`
   height: 100%;
   margin: 0 auto;
   padding: 32px;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 12px;
+  }
 `
 
 export const FooterLogo = styled.div``
@@ -44,5 +49,48 @@ export const FooterLink = styled.a`
 
   &:hover {
     color: #149708;
+  }
+`
+
+export const FooterJoinBox = styled.div`
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+
+  margin: 24px 0;
+`
+
+export const FooterJoinLink = styled.a`
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: underline;
+`
+
+export const FooterBookBox = styled.div`
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+`
+
+export const FooterBookBookPhone = styled.a`
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+
+  svg {
+    color: #149708;
+  }
+
+  &:hover {
+    color: #777;
   }
 `

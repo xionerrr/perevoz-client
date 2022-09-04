@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
+import { CircularProgress, useMediaQuery } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import * as S from './styles'
 
 import { I_DirectionItem } from 'types/Destionation'
+import { E_BreakPoints } from 'utils/constants/breakpoints'
 
 enum E_SlideDirections {
   prev = 'prev',
@@ -29,7 +31,10 @@ export const Directions = ({
 
   const sliderRef = useRef<any>(null)
 
-  const destinationsCount = 4
+  const isDesktop = useMediaQuery(E_BreakPoints.desktopLarge)
+  const isTablet = useMediaQuery(E_BreakPoints.table)
+
+  const destinationsCount = isDesktop ? 4 : isTablet ? 2 : 1
 
   const handleChangeDirection = (direction: E_SlideDirections) => () => {
     if (!sliderRef.current) return
@@ -46,6 +51,22 @@ export const Directions = ({
       setIsEnd(sliderRef.current.swiper.isEnd)
     }
   }, [sliderRef])
+
+  if (getPostDirectionsLoading) {
+    return (
+      <S.DirectionsLoader>
+        <CircularProgress sx={{ color: '#999' }} disableShrink />
+      </S.DirectionsLoader>
+    )
+  }
+
+  if (!getPostDirectionsSuccess) {
+    return (
+      <S.DirectionsLoader>
+        <CircularProgress sx={{ color: '#999' }} disableShrink />
+      </S.DirectionsLoader>
+    )
+  }
 
   return (
     <S.Directions>

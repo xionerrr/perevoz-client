@@ -3,7 +3,8 @@ export { Services } from './Services'
 export { Faq } from './Faq'
 export { Book } from './Book'
 export { Partner } from './Partner'
-
+export { Package } from './Package'
+export { AutoPark } from './Autopark'
 export { SignIn } from './SignIn'
-
+export { Edit } from './Edit'
 export { NotFound } from './NotFound'

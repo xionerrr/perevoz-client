@@ -2,14 +2,16 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 export const Modal = styled(motion.div)`
+  touch-action: none;
+
   position: fixed;
-  z-index: 998;
+  z-index: 995;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +23,10 @@ export const Modal = styled(motion.div)`
 `
 
 export const ModalOverlay = styled.div`
+  touch-action: none;
+
   position: fixed;
+  z-index: 996;
   top: 0;
   right: 0;
   bottom: 0;

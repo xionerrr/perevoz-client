@@ -12,17 +12,22 @@ export const FeaturesInner = styled.div`
 
 export const FeaturesTitle = styled.h3`
   margin-bottom: 4.0625rem;
-  padding: 0;
+  padding: 0 24px;
 
   font-size: 30px;
   text-align: center;
   text-transform: uppercase;
+
+  @media (max-width: 625px) {
+    font-size: 28px;
+  }
 `
 
 export const FeaturesContent = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 64px;
+  justify-content: center;
 
   padding: 0 48px;
 `
@@ -32,6 +37,8 @@ export const FeaturesItem = styled.div`
   flex-direction: column;
   gap: 12px;
   align-items: center;
+
+  max-width: 375px;
 
   text-align: center;
 `

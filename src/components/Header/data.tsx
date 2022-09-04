@@ -3,6 +3,8 @@ enum E_HeaderLinks {
   services = '/services',
   faq = '/faq',
   partner = '/partner',
+  package = '/package',
+  autopark = '/autopark',
 }
 
 interface I_HeaderItems {
@@ -26,6 +28,14 @@ export const headerItems: I_HeaderItems[] = [
   {
     label: 'Партнерам',
     to: E_HeaderLinks.partner,
+  },
+  {
+    label: 'Посилки',
+    to: E_HeaderLinks.package,
+  },
+  {
+    label: 'Автопарк',
+    to: E_HeaderLinks.autopark,
   },
 ]
 

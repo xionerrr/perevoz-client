@@ -1,79 +1,44 @@
 import { Route, Routes } from 'react-router-dom'
 
 import { AuthRoute } from './AuthRoute'
+import { LayoutRoute } from './LayoutRoute'
 import { ProtectedRoute } from './ProtectedRoute'
 
-import { AuthLayout } from 'layouts/Auth'
-import { MainLayout } from 'layouts/Main'
-import { Book, Faq, Home, NotFound, Partner, Services, SignIn } from 'pages'
+import useScrollToTop from 'hooks/useScrollToTop'
+import {
+  AutoPark,
+  Book,
+  Edit,
+  Faq,
+  Home,
+  NotFound,
+  Package,
+  Partner,
+  Services,
+  SignIn,
+} from 'pages'
 import { ROUTES } from 'utils/constants/routes'
 
 export const AppRoutes = () => {
+  useScrollToTop()
+
   return (
     <Routes>
-      <Route
-        path={ROUTES.notFound}
-        element={
-          <MainLayout>
-            <NotFound />
-          </MainLayout>
-        }
-      />
-
-      <Route
-        path={ROUTES.home}
-        element={
-          <MainLayout>
-            <Home />
-          </MainLayout>
-        }
-      />
-      <Route
-        path={ROUTES.services}
-        element={
-          <MainLayout>
-            <Services />
-          </MainLayout>
-        }
-      />
-      <Route
-        path={ROUTES.faq}
-        element={
-          <MainLayout>
-            <Faq />
-          </MainLayout>
-        }
-      />
-      <Route
-        path={ROUTES.book}
-        element={
-          <MainLayout>
-            <Book />
-          </MainLayout>
-        }
-      />
-      <Route
-        path={ROUTES.partner}
-        element={
-          <MainLayout>
-            <Partner />
-          </MainLayout>
-        }
-      />
-
       <Route element={<ProtectedRoute />}>
-        <Route path={ROUTES.admin} element={<AuthLayout>AdminPanel</AuthLayout>} />
+        <Route path={ROUTES.admin} element={<Edit />} />
       </Route>
-
       <Route element={<AuthRoute />}>
-        <Route
-          path={ROUTES.auth}
-          element={
-            <AuthLayout>
-              <SignIn />
-            </AuthLayout>
-          }
-        />
+        <Route path={ROUTES.auth} element={<SignIn />} />
+      </Route>
+      <Route element={<LayoutRoute />}>
+        <Route path={ROUTES.notFound} element={<NotFound />} />
+        <Route path={ROUTES.home} element={<Home />} />
+        <Route path={ROUTES.services} element={<Services />} />
+        <Route path={ROUTES.faq} element={<Faq />} />
+        <Route path={ROUTES.book} element={<Book />} />
+        <Route path={ROUTES.partner} element={<Partner />} />
+        <Route path={ROUTES.package} element={<Package />} />
+        <Route path={ROUTES.autopark} element={<AutoPark />} />
       </Route>
     </Routes>
   )

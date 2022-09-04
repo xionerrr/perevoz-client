@@ -1,6 +1,17 @@
 import styled from 'styled-components'
 
-export const Faq = styled.div``
+import bookingBg from 'assets/images/map-bg.jpg'
+
+export const Faq = styled.div`
+  padding: 72px 0;
+`
+
+export const Book = styled.div`
+  padding: 72px 0;
+
+  background: url(${bookingBg}) no-repeat 0 25%;
+  background-size: cover;
+`
 
 export const FaqInner = styled.div`
   width: 100%;
@@ -8,11 +19,23 @@ export const FaqInner = styled.div`
   min-width: 320px;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 64px 0;
+`
+
+export const BookingInner = styled.div`
+  width: 100%;
+  width: 90%;
+  min-width: 320px;
+  max-width: 525px;
+  margin: 0 auto;
 `
 
 export const FaqTitle = styled.h3`
   margin-bottom: 40px;
 
   font-size: 64px;
+  color: #149708;
+
+  @media (max-width: 625px) {
+    font-size: 48px;
+  }
 `

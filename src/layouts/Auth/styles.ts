@@ -32,13 +32,15 @@ export const GoBack = styled.button`
 
   display: flex;
 
+  color: #000;
+
   background-color: transparent;
   border: 0;
   outline: 0;
 
   &:hover {
     svg {
-      fill: #149708;
+      color: #149708;
     }
   }
 `

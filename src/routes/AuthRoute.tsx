@@ -3,6 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 
 import { useStoreDispatch } from 'hooks/useStoreDispatch'
 import { useStoreSelector } from 'hooks/useStoreSelector'
+import { AuthLayout } from 'layouts/Auth'
 import { signIn } from 'store/auth'
 import { ROUTES } from 'utils/constants/routes'
 import { LocalStorage } from 'utils/helpers/localStorage'
@@ -16,7 +17,12 @@ export const AuthRoute = () => {
     if (token) dispatch(signIn())
   }, [])
 
-  if (token && isAuth) return <Navigate to={ROUTES.admin} />
+  if (!token && !isAuth)
+    return (
+      <AuthLayout>
+        <Outlet />
+      </AuthLayout>
+    )
 
-  return <Outlet />
+  return <Navigate to={ROUTES.admin} />
 }

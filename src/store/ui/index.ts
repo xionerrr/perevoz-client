@@ -5,6 +5,7 @@ import { E_Modals, I_Modal } from 'types/UI'
 
 interface I_UIState {
   modal: I_Modal
+  isSidebarOpened: boolean
 }
 
 const initialState: I_UIState = {
@@ -13,6 +14,7 @@ const initialState: I_UIState = {
     window: null,
     data: null,
   },
+  isSidebarOpened: false,
 }
 
 const uiSlice = createSlice({
@@ -28,9 +30,12 @@ const uiSlice = createSlice({
       state.modal.isOpen = false
       state.modal.window = null
     },
+    toggleSidebar: (state) => {
+      state.isSidebarOpened = !state.isSidebarOpened
+    },
   },
 })
 
-export const { openModal, closeModal } = uiSlice.actions
+export const { openModal, closeModal, toggleSidebar } = uiSlice.actions
 
 export default uiSlice

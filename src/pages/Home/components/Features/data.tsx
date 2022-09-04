@@ -1,5 +1,5 @@
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import ChairIcon from '@mui/icons-material/Chair'
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
+import PaymentIcon from '@mui/icons-material/Payment'
 import TimeToLeaveIcon from '@mui/icons-material/TimeToLeave'
 import WifiIcon from '@mui/icons-material/Wifi'
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory'
@@ -14,35 +14,30 @@ interface I_FeatureItems {
 export const featuresItems: I_FeatureItems[] = [
   {
     label: 'Сучасні автомобілі',
-    icon: <ChairIcon fontSize='large' />,
-    description: 'Комфорт і безпека – вище за все. До Ваших послуг кращі автомобілі преміум класу.',
+    icon: <TimeToLeaveIcon fontSize='large' />,
+    description:
+      'Комфорт і безпека - понад усе. Для наших клієнтів найкращі автомобілі преміум класу.',
   },
   {
     label: 'Досвідчені водії',
-    icon: <TimeToLeaveIcon fontSize='large' />,
+    icon: <EmojiPeopleIcon fontSize='large' />,
     description:
       'Ми зібрали команду справжніх професіоналів, які дотримуються високих стандартів транспортних послуг.',
   },
   {
     label: 'Wi-Fi',
     icon: <WifiIcon fontSize='large' />,
-    description: 'Всі машини: сучасні та в ідеальному стані. Наші клієнти заслуговують найкращого.',
+    description: `Упродовж усієї подорожі ви зможете залишатися на зв'язку зі своїми рідними.`,
   },
   {
-    label: 'Пунктуальність',
-    icon: <AccessTimeIcon fontSize='large' />,
-    description:
-      'Ми цінуємо Ваш час, тому можете бути впевнені – Ви приїдете до місця призначення вчасно!',
-  },
-  {
-    label: 'Супровід по маршруту',
-    icon: <ChairIcon fontSize='large' />,
-    description: 'Комфорт і безпека – вище за все. До Ваших послуг кращі автомобілі преміум класу.',
+    label: 'Зручне онлайн-бронювання',
+    icon: <PaymentIcon fontSize='large' />,
+    description: 'Замовляй онлайн - сплачуй при посадці.',
   },
   {
     label: 'Довгий період на ринку',
     icon: <WorkHistoryIcon fontSize='large' />,
     description:
-      'У нас є колосальний досвід пасажирських перевезень і ми готові запропонувати найкращий сервіс!',
+      'У нас є колосальний досвід пасажирських перевезень, і ми готові запропонувати найкращий сервіс.',
   },
 ]

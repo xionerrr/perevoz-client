@@ -119,11 +119,11 @@ export const SignIn = styled.div`
   border: 0;
 `
 
-// interface I_LoginButton {
-//   userLoginLoading: boolean
-// }
+interface I_LoginButton {
+  userLoginLoading: boolean
+}
 
-export const LoginButton = styled.button`
+export const LoginButton = styled.button<I_LoginButton>`
   cursor: pointer;
 
   width: 100%;
@@ -132,7 +132,7 @@ export const LoginButton = styled.button`
   font-weight: 500;
   color: #fff;
 
-  background-color: #000;
+  background-color: ${({ userLoginLoading }) => (userLoginLoading ? '#999' : '#000')};
   filter: brightness(1);
   border: none;
   border-radius: 10px;

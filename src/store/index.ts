@@ -3,12 +3,14 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import AuthSlice from './auth'
 import uiSlice from './ui'
 
-import { postsAPI } from 'services/posts'
+import { authAPI } from 'services/auth'
+import { tripAPI } from 'services/trip'
 
 const rootReducer = combineReducers({
   [uiSlice.name]: uiSlice.reducer,
   [AuthSlice.name]: AuthSlice.reducer,
-  [postsAPI.reducerPath]: postsAPI.reducer,
+  [tripAPI.reducerPath]: tripAPI.reducer,
+  [authAPI.reducerPath]: authAPI.reducer,
 })
 
 export const store = configureStore({
@@ -16,7 +18,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat([postsAPI.middleware]),
+    }).concat([tripAPI.middleware, authAPI.middleware]),
 })
 
 export type RootState = ReturnType<typeof store.getState>

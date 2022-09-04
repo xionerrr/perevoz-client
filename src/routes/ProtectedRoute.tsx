@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 import { useStoreDispatch } from 'hooks/useStoreDispatch'
 import { useStoreSelector } from 'hooks/useStoreSelector'
+import { AdminLayout } from 'layouts/Admin'
 import { MainLayout } from 'layouts/Main'
 import { NotFound } from 'pages'
 import { signIn } from 'store/auth'
@@ -17,11 +18,16 @@ export const ProtectedRoute = () => {
     if (token) dispatch(signIn())
   }, [])
 
-  if (token && isAuth) return <Outlet />
+  if (!token && !isAuth)
+    return (
+      <MainLayout>
+        <NotFound />
+      </MainLayout>
+    )
 
   return (
-    <MainLayout>
-      <NotFound />
-    </MainLayout>
+    <AdminLayout>
+      <Outlet />
+    </AdminLayout>
   )
 }

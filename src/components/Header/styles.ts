@@ -10,7 +10,7 @@ export const Header = styled.header`
 
   width: 100%;
 
-  background-color: #fff;
+  background-color: #232329;
   box-shadow: 0 0 4px 0 rgb(0 0 0 / 12%);
 `
 
@@ -18,7 +18,7 @@ export const HeaderInner = styled.div`
   height: 81px;
   padding: 13px 45px;
 
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #333;
 `
 
 export const HeaderBox = styled.div`
@@ -38,7 +38,7 @@ export const HeaderLogoLink = styled(Link)`
 
   font-size: 16px;
   font-weight: 500;
-  color: #3f5573;
+  color: #fff;
   text-transform: uppercase;
 `
 
@@ -100,7 +100,7 @@ export const HeaderLink = styled(Link)<I_HeaderLinkProps>`
 
   font-size: 14px;
   font-weight: 600;
-  color: ${({ $isActive }) => ($isActive ? '#149708' : '#000')};
+  color: ${({ $isActive }) => ($isActive ? '#149708' : '#fff')};
   text-transform: uppercase;
 `
 
@@ -125,7 +125,7 @@ export const HeaderBookPhone = styled.a`
 
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: #fff;
 
   svg {
     color: #149708;
@@ -143,7 +143,7 @@ export const HeaderBookAdditionalPhone = styled.a`
 
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: #fff;
 
   svg {
     color: #149708;
@@ -175,4 +175,40 @@ export const HeaderBookLink = styled(Link)`
   &:hover {
     background-color: #5f5573;
   }
+`
+
+export const HeaderMobile = styled.div`
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  width: 100%;
+
+  background-color: #232329;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 12%);
+`
+
+export const HeaderMobileInner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 45px;
+  padding: 9px 32px;
+
+  border-bottom: 1px solid #333;
+`
+
+export const HeaderSidebarToggle = styled.button`
+  cursor: pointer;
+
+  width: auto;
+  height: auto;
+
+  color: #fff;
+
+  background-color: transparent;
+  border: 0;
 `

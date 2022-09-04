@@ -51,7 +51,7 @@ interface I_FaqListItemContentProps {
 export const FaqListItemContent = styled.div<I_FaqListItemContentProps>`
   overflow: hidden;
 
-  max-height: ${({ $isOpened }) => ($isOpened ? '325px' : '0px')};
+  max-height: ${({ $isOpened }) => ($isOpened ? '625px' : '0px')};
 
   visibility: ${({ $isOpened }) => ($isOpened ? 'visible' : 'hidden')};
   opacity: ${({ $isOpened }) => ($isOpened ? '1' : '0')};
@@ -74,6 +74,12 @@ export const FaqListItemIcon = styled.div`
 
 export const FaqListItemLabel = styled.div`
   font-size: 18px;
+
+  @media (max-width: 625px) {
+    padding: 6px;
+
+    font-size: 16px;
+  }
 `
 
 export const FaqListItemContentInner = styled.div`

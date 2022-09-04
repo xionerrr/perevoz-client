@@ -5,7 +5,7 @@ export const Features = () => {
   return (
     <S.Features>
       <S.FeaturesInner>
-        <S.FeaturesTitle>Чому варто бронювати білети саме в нас?</S.FeaturesTitle>
+        <S.FeaturesTitle>Чому варто бронювати квитки саме в нас?</S.FeaturesTitle>
         <S.FeaturesContent>
           {featuresItems.map((item, index) => {
             return (

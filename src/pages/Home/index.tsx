@@ -1,9 +1,9 @@
 import { useLayoutEffect, useState } from 'react'
 
-import { Directions, HomeFaq, Features, Introduce } from './components'
+import { Directions, HomeFaq, Features, Introduce, Reviews } from './components'
 import * as S from './styles'
 
-import { postsAPI } from 'services/posts'
+import { tripAPI } from 'services/trip'
 import { I_DirectionItem } from 'types/Destionation'
 
 export const Home = () => {
@@ -13,7 +13,7 @@ export const Home = () => {
     data: getPostDirections,
     isSuccess: getPostDirectionsSuccess,
     isLoading: getPostDirectionsLoading,
-  } = postsAPI.useGetPostsQuery()
+  } = tripAPI.useGetTripDestinationsOverviewQuery()
 
   useLayoutEffect(() => {
     if (getPostDirections) setPostDirections(getPostDirections)
@@ -30,6 +30,7 @@ export const Home = () => {
           getPostDirectionsLoading={getPostDirectionsLoading}
         />
         <HomeFaq />
+        <Reviews />
       </S.HomeInner>
     </S.Home>
   )

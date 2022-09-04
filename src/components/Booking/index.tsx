@@ -1,14 +1,22 @@
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded'
+import { CircularProgress, useMediaQuery } from '@mui/material'
 import { format } from 'date-fns'
 import { useEffect, useLayoutEffect, useState } from 'react'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import { useForm } from 'react-hook-form'
+import { useLocation } from 'react-router-dom'
 
-import { days, months } from './data'
+import { days, months, passengersCount } from './data'
 import * as S from './styles'
 import 'react-datepicker/dist/react-datepicker.css'
 
-import { postsAPI } from 'services/posts'
+import { useStoreDispatch } from 'hooks/useStoreDispatch'
+import { tripAPI } from 'services/trip'
+import { openModal } from 'store/ui'
 import { I_DestinationItem } from 'types/Destionation'
+import { E_Modals } from 'types/UI'
+import { E_BreakPoints } from 'utils/constants/breakpoints'
 import { regExps } from 'utils/constants/regExp'
 
 type FormData = {
@@ -17,6 +25,7 @@ type FormData = {
   departure: string
   arrival: string
   date: string
+  passengersCount: string
 }
 
 registerLocale('uk', {
@@ -36,19 +45,16 @@ export const Booking = () => {
   const [tripDestinations, setTripDestinations] = useState<I_DestinationItem[]>()
   const [calendarData, setCalendarData] = useState<Date>(new Date())
 
+  const isMobile = useMediaQuery(E_BreakPoints.mobile)
+
+  const location = useLocation()
+  const dispatch = useStoreDispatch()
+
   const {
     data: getTripDestinationsData,
     isLoading: getTripDestinationsLoading,
     isSuccess: getTripDestinationsSuccess,
-  } = postsAPI.useGetTripDestinationsQuery()
-
-  useLayoutEffect(() => {
-    if (getTripDestinationsData) setTripDestinations(getTripDestinationsData)
-  }, [getTripDestinationsData])
-
-  useEffect(() => {
-    if (calendarData) setValue('date', format(new Date(calendarData), 'yyyy-MM-dd'))
-  }, [calendarData])
+  } = tripAPI.useGetTripDestinationsQuery()
 
   const {
     register,
@@ -64,43 +70,73 @@ export const Booking = () => {
       departure: '',
       arrival: '',
       date: '',
+      passengersCount: '1',
     },
   })
 
   const value = getValues()
 
   const Submit = () => {
-    console.log({
-      userName: getValues('userName'),
-      phone: getValues('phone'),
-      departure: getValues('departure'),
-      arrival: getValues('arrival'),
-      date: getValues('date'),
-    })
+    dispatch(
+      openModal({
+        window: E_Modals.book,
+        data: {
+          userName: getValues('userName'),
+          phone: getValues('phone'),
+          departure: getValues('departure'),
+          arrival: getValues('arrival'),
+          date: getValues('date'),
+          passengersCount: getValues('passengersCount'),
+        },
+      }),
+    )
   }
+
+  useLayoutEffect(() => {
+    if (getTripDestinationsData) setTripDestinations(getTripDestinationsData)
+  }, [getTripDestinationsData])
+
+  useEffect(() => {
+    if (calendarData) setValue('date', format(new Date(calendarData), 'yyyy-MM-dd'))
+  }, [calendarData])
+
+  useEffect(() => {
+    setValue('arrival', '')
+  }, [value.departure])
 
   watch()
 
-  if (getTripDestinationsLoading) return <div>Loading...</div>
+  if (getTripDestinationsLoading)
+    return (
+      <S.BookingLoader location={location.pathname}>
+        <CircularProgress sx={{ color: '#999' }} disableShrink />
+      </S.BookingLoader>
+    )
 
   if (tripDestinations && getTripDestinationsSuccess)
     return (
       <S.Booking>
-        <S.BookingForm onSubmit={handleSubmit(Submit)}>
+        <S.BookingForm location={location.pathname} onSubmit={handleSubmit(Submit)}>
           <S.BookingFormTitle>Бронювання поїздки</S.BookingFormTitle>
           <S.BookingFormInner>
             <S.BookingFormUserInfo>
               <S.BookingFormName>
+                <S.BookingFromUserLabel>Ім'я</S.BookingFromUserLabel>
                 <S.BookingFormInput
                   id='userNameField'
                   type='text'
                   placeholder="Ім'я"
                   autoComplete='off'
                   {...register('userName', { required: true, maxLength: 40 })}
-                ></S.BookingFormInput>
-                {errors.userName && <div>Please enter a valid user</div>}
+                />
+                {errors.userName && (
+                  <S.BookingFormNameError>
+                    <PriorityHighRoundedIcon fontSize='small' />
+                  </S.BookingFormNameError>
+                )}
               </S.BookingFormName>
               <S.BookingFormTel>
+                <S.BookingFromUserLabel>Телефон</S.BookingFromUserLabel>
                 <S.BookingFormInput
                   id='userTelField'
                   type='text'
@@ -115,16 +151,24 @@ export const Booking = () => {
                       message: 'Please enter a number',
                     },
                   })}
-                ></S.BookingFormInput>
-                {errors.phone && <div>Please enter a valid phone</div>}
+                />
+                {errors.phone && (
+                  <S.BookingFormTelError>
+                    <PriorityHighRoundedIcon fontSize='small' />
+                  </S.BookingFormTelError>
+                )}
               </S.BookingFormTel>
             </S.BookingFormUserInfo>
             <S.BookingFormUserDestination>
               <S.BookingFromUserDepartureCity>
-                <S.BookingFromUserCitySelect
-                  value={value.departure}
-                  onChange={(e) => setValue('departure', e.target.value)}
-                >
+                <S.BookingFromUserLabel>Місто виїзду</S.BookingFromUserLabel>
+                <KeyboardArrowDownIcon />
+                <S.BookingFromUserCitySelect {...register('departure', { required: true })}>
+                  {!value.departure && (
+                    <S.BookingFromUserCityOptionNotSelected value='' disabled>
+                      Виберіть
+                    </S.BookingFromUserCityOptionNotSelected>
+                  )}
                   {tripDestinations.map((destination, index) => {
                     return (
                       <S.BookingFromUserCityOption key={index} value={destination.startDestination}>
@@ -133,34 +177,109 @@ export const Booking = () => {
                     )
                   })}
                 </S.BookingFromUserCitySelect>
+                {errors.departure && (
+                  <S.BookingFormDepartureError>
+                    <PriorityHighRoundedIcon fontSize='small' />
+                  </S.BookingFormDepartureError>
+                )}
               </S.BookingFromUserDepartureCity>
-              <S.BookingFromUserArrivalCity>
-                <S.BookingFromUserCitySelect
-                  value={value.arrival}
-                  onChange={(e) => setValue('arrival', e.target.value)}
-                >
-                  {tripDestinations.map((destination, index) => {
-                    return (
-                      <S.BookingFromUserCityOption
-                        key={index}
-                        value={destination.finishDestination}
-                      >
-                        {destination.finishDestination}
-                      </S.BookingFromUserCityOption>
-                    )
-                  })}
-                </S.BookingFromUserCitySelect>
-              </S.BookingFromUserArrivalCity>
+              {isMobile ? (
+                <S.BookingFromUserArrivalCity>
+                  <S.BookingFromUserLabel>Місто прибуття</S.BookingFromUserLabel>
+                  <KeyboardArrowDownIcon />
+                  <S.BookingFromUserCitySelect
+                    {...register('arrival', { required: true })}
+                    disabled={!value.departure}
+                  >
+                    {
+                      <S.BookingFromUserCityOptionNotSelected value='' disabled>
+                        Виберіть
+                      </S.BookingFromUserCityOptionNotSelected>
+                    }
+                    {tripDestinations
+                      .filter((filteredItem) => filteredItem.startDestination === value.departure)
+                      .map((destination) =>
+                        destination.finishDestination.map((item) => {
+                          return (
+                            <S.BookingFromUserCityOption key={item} value={item}>
+                              {item}
+                            </S.BookingFromUserCityOption>
+                          )
+                        }),
+                      )}
+                  </S.BookingFromUserCitySelect>
+                  {value.departure
+                    ? errors.arrival && (
+                        <S.BookingFormDepartureError>
+                          <PriorityHighRoundedIcon fontSize='small' />
+                        </S.BookingFormDepartureError>
+                      )
+                    : null}
+                </S.BookingFromUserArrivalCity>
+              ) : (
+                value.departure && (
+                  <S.BookingFromUserArrivalCity>
+                    <S.BookingFromUserLabel>Місто прибуття</S.BookingFromUserLabel>
+                    <KeyboardArrowDownIcon />
+                    <S.BookingFromUserCitySelect
+                      {...register('arrival', { required: true })}
+                      disabled={!value.departure}
+                    >
+                      {
+                        <S.BookingFromUserCityOptionNotSelected value='' disabled>
+                          Виберіть
+                        </S.BookingFromUserCityOptionNotSelected>
+                      }
+                      {tripDestinations
+                        .filter((filteredItem) => filteredItem.startDestination === value.departure)
+                        .map((destination) =>
+                          destination.finishDestination.map((item) => {
+                            return (
+                              <S.BookingFromUserCityOption key={item} value={item}>
+                                {item}
+                              </S.BookingFromUserCityOption>
+                            )
+                          }),
+                        )}
+                    </S.BookingFromUserCitySelect>
+                    {value.departure
+                      ? errors.arrival && (
+                          <S.BookingFormDepartureError>
+                            <PriorityHighRoundedIcon fontSize='small' />
+                          </S.BookingFormDepartureError>
+                        )
+                      : null}
+                  </S.BookingFromUserArrivalCity>
+                )
+              )}
             </S.BookingFormUserDestination>
             <S.BookingFormUserDetails>
+              <S.BookingFromUserLabel>Дата прибуття</S.BookingFromUserLabel>
               <DatePicker
                 locale='uk'
                 dateFormat='dd.MM.yyyy'
                 selected={calendarData}
                 onChange={(date: Date) => setCalendarData(date)}
+                minDate={new Date()}
               />
             </S.BookingFormUserDetails>
             <S.BookingFormSubmit>
+              <S.BookingFormUserPassengersCount>
+                <S.BookingFromUserLabel>Місць</S.BookingFromUserLabel>
+                <KeyboardArrowDownIcon />
+                <S.BookingFromUserCitySelect
+                  value={value.passengersCount}
+                  onChange={(e) => setValue('passengersCount', e.target.value)}
+                >
+                  {passengersCount.map((passenger) => {
+                    return (
+                      <S.BookingFromUserCityOption key={passenger} value={passenger}>
+                        {passenger}
+                      </S.BookingFromUserCityOption>
+                    )
+                  })}
+                </S.BookingFromUserCitySelect>
+              </S.BookingFormUserPassengersCount>
               <S.BookingFormSubmitButton type='submit'>Забронювати</S.BookingFormSubmitButton>
             </S.BookingFormSubmit>
           </S.BookingFormInner>
@@ -168,5 +287,9 @@ export const Booking = () => {
       </S.Booking>
     )
 
-  return <div>Error...</div>
+  return (
+    <S.BookingLoader location={location.pathname}>
+      <CircularProgress sx={{ color: '#999' }} disableShrink />
+    </S.BookingLoader>
+  )
 }
