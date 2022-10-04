@@ -16,18 +16,6 @@ const App = () => {
     return document.body.classList.remove('locked')
   }, [isModalOpen, isSidebarOpened])
 
-  function test(d: any, w: any, s: any) {
-    const widgetHash = 'ns7sxempfdw2wgx1pfz8',
-      gcw = d.createElement(s)
-    gcw.type = 'text/javascript'
-    gcw.async = true
-    gcw.src = '//widgets.binotel.com/getcall/widgets/' + widgetHash + '.js'
-    const sn = d.getElementsByTagName(s)[0]
-    sn.parentNode.insertBefore(gcw, sn)
-  }
-
-  test(document, window, 'script')
-
   return (
     <S.App>
       <AppRoutes />
