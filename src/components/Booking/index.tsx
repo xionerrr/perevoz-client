@@ -56,6 +56,8 @@ export const Booking = () => {
     isSuccess: getTripDestinationsSuccess,
   } = tripAPI.useGetTripDestinationsQuery()
 
+  const [placeOrder] = tripAPI.usePlaceOrderMutation()
+
   const {
     register,
     formState: { errors },
@@ -77,6 +79,14 @@ export const Booking = () => {
   const value = getValues()
 
   const Submit = () => {
+    placeOrder({
+      name: getValues('userName'),
+      phoneNumber: getValues('phone'),
+      startDestination: getValues('departure'),
+      endDestination: getValues('arrival'),
+      date: getValues('date'),
+      placeCounter: getValues('passengersCount'),
+    })
     dispatch(
       openModal({
         window: E_Modals.book,
@@ -254,7 +264,7 @@ export const Booking = () => {
               )}
             </S.BookingFormUserDestination>
             <S.BookingFormUserDetails>
-              <S.BookingFromUserLabel>Дата прибуття</S.BookingFromUserLabel>
+              <S.BookingFromUserLabel>Дата відправлення</S.BookingFromUserLabel>
               <DatePicker
                 locale='uk'
                 dateFormat='dd.MM.yyyy'

@@ -4,6 +4,7 @@ import AuthSlice from './auth'
 import uiSlice from './ui'
 
 import { authAPI } from 'services/auth'
+import { callAPI } from 'services/call'
 import { tripAPI } from 'services/trip'
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   [AuthSlice.name]: AuthSlice.reducer,
   [tripAPI.reducerPath]: tripAPI.reducer,
   [authAPI.reducerPath]: authAPI.reducer,
+  [callAPI.reducerPath]: callAPI.reducer,
 })
 
 export const store = configureStore({
@@ -18,7 +20,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat([tripAPI.middleware, authAPI.middleware]),
+    }).concat([tripAPI.middleware, authAPI.middleware, callAPI.middleware]),
 })
 
 export type RootState = ReturnType<typeof store.getState>

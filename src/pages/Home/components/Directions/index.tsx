@@ -3,6 +3,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { CircularProgress, useMediaQuery } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
+import SwiperCore, { Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import * as S from './styles'
@@ -35,6 +36,8 @@ export const Directions = ({
   const isTablet = useMediaQuery(E_BreakPoints.table)
 
   const destinationsCount = isDesktop ? 4 : isTablet ? 2 : 1
+
+  SwiperCore.use([Autoplay])
 
   const handleChangeDirection = (direction: E_SlideDirections) => () => {
     if (!sliderRef.current) return
@@ -71,15 +74,18 @@ export const Directions = ({
   return (
     <S.Directions>
       <S.DirectionsInner>
-        <S.DirectionsTitle>Основні напрямки</S.DirectionsTitle>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <S.DirectionsTitle>Основні напрямки</S.DirectionsTitle>
+        </div>
         <S.DirectionsList>
           <Swiper
             onInit={(core) => {
               sliderRef.current = core.el
             }}
+            autoplay={{ delay: 2000 }}
             slidesPerView={postDirections.length >= 4 ? destinationsCount : 'auto'}
             spaceBetween={24}
-            allowTouchMove={false}
+            allowTouchMove
           >
             {postDirections.map((item, index) => {
               return (
@@ -105,19 +111,24 @@ export const Directions = ({
               )
             })}
           </Swiper>
-          {postDirections.length > destinationsCount && (
-            <>
-              <S.SwiperPrev
-                onClick={handleChangeDirection(E_SlideDirections.prev)}
-                $isBegin={isBegin}
-              >
-                <KeyboardArrowLeftIcon />
-              </S.SwiperPrev>
-              <S.SwiperNext onClick={handleChangeDirection(E_SlideDirections.next)} $isEnd={isEnd}>
-                <KeyboardArrowRightIcon />
-              </S.SwiperNext>
-            </>
-          )}
+          {!isDesktop
+            ? null
+            : postDirections.length > destinationsCount && (
+                <>
+                  <S.SwiperPrev
+                    onClick={handleChangeDirection(E_SlideDirections.prev)}
+                    $isBegin={isBegin}
+                  >
+                    <KeyboardArrowLeftIcon />
+                  </S.SwiperPrev>
+                  <S.SwiperNext
+                    onClick={handleChangeDirection(E_SlideDirections.next)}
+                    $isEnd={isEnd}
+                  >
+                    <KeyboardArrowRightIcon />
+                  </S.SwiperNext>
+                </>
+              )}
         </S.DirectionsList>
       </S.DirectionsInner>
     </S.Directions>

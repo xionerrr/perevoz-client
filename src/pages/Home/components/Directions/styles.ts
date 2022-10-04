@@ -5,6 +5,9 @@ export const Directions = styled.div`
 
   padding: 72px 0;
 
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+
   &::before {
     pointer-events: none;
     content: '';
@@ -40,13 +43,14 @@ export const DirectionsLoader = styled.div`
 
 export const DirectionsTitle = styled.h3`
   margin-bottom: 40px;
+  padding: 6px;
 
   font-size: 30px;
   text-align: center;
   text-transform: uppercase;
 
   @media (max-width: 625px) {
-    font-size: 28px;
+    font-size: 24px;
   }
 `
 
@@ -150,7 +154,7 @@ export const DirectionListItem = styled.div`
   width: inherit;
   height: fit-content;
 
-  box-shadow: 0 0 4px 0 rgb(0 0 0 / 9%);
+  box-shadow: 0 0 1px 0 #000;
 `
 
 export const DirectionListItemTopSection = styled.div`
@@ -195,9 +199,21 @@ export const DirectionListItemDetails = styled.div`
 export const DirectionListItemDirection = styled.div`
   position: relative;
 
-  &::before {
-    content: '-';
+  margin-top: 2px;
 
+  font-size: 18px;
+  font-weight: 500;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    bottom: 0;
+
+    width: 32px;
+    height: 1px;
     margin-right: 6px;
+
+    background-color: #ed4c00;
   }
 `

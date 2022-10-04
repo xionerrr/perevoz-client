@@ -3,11 +3,15 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { useMediaQuery } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
+import SwiperCore, { Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { autoParkData } from './data'
 import * as S from './styles'
 
+import first from 'assets/images/1.png'
+import second from 'assets/images/2.png'
+import third from 'assets/images/3.png'
 import { Booking } from 'components/Booking'
 import { useStoreDispatch } from 'hooks/useStoreDispatch'
 import { openModal } from 'store/ui'
@@ -29,6 +33,8 @@ export const AutoPark = () => {
 
   const isDesktop = useMediaQuery(E_BreakPoints.desktopLarge)
   const isTablet = useMediaQuery(E_BreakPoints.table)
+
+  SwiperCore.use([Autoplay])
 
   const destinationsCount = isDesktop ? 3 : isTablet ? 2 : 1
 
@@ -61,7 +67,14 @@ export const AutoPark = () => {
     <>
       <S.AutoPark>
         <S.AutoParkInner>
-          <S.AvtoParkTitle>Наш Автопарк</S.AvtoParkTitle>
+          <S.AvtoParkTitle>
+            Наш автопарк
+            <S.AvtoParkEmblems>
+              <img src={first} alt='first' />
+              <img src={second} alt='second' />
+              <img src={third} alt='third' />
+            </S.AvtoParkEmblems>
+          </S.AvtoParkTitle>
           <S.AvtoParkList>
             <Swiper
               onInit={(core) => {
@@ -69,7 +82,8 @@ export const AutoPark = () => {
               }}
               slidesPerView={autoParkData.length >= 3 ? destinationsCount : 'auto'}
               spaceBetween={24}
-              allowTouchMove={false}
+              autoplay={{ delay: 2000 }}
+              allowTouchMove
             >
               {autoParkData.map((item, index) => {
                 return (
@@ -83,22 +97,24 @@ export const AutoPark = () => {
                 )
               })}
             </Swiper>
-            {autoParkData.length > destinationsCount && (
-              <>
-                <S.SwiperPrev
-                  onClick={handleChangeDirection(E_SlideDirections.prev)}
-                  $isBegin={isBegin}
-                >
-                  <KeyboardArrowLeftIcon />
-                </S.SwiperPrev>
-                <S.SwiperNext
-                  onClick={handleChangeDirection(E_SlideDirections.next)}
-                  $isEnd={isEnd}
-                >
-                  <KeyboardArrowRightIcon />
-                </S.SwiperNext>
-              </>
-            )}
+            {!isDesktop
+              ? null
+              : autoParkData.length > destinationsCount && (
+                  <>
+                    <S.SwiperPrev
+                      onClick={handleChangeDirection(E_SlideDirections.prev)}
+                      $isBegin={isBegin}
+                    >
+                      <KeyboardArrowLeftIcon />
+                    </S.SwiperPrev>
+                    <S.SwiperNext
+                      onClick={handleChangeDirection(E_SlideDirections.next)}
+                      $isEnd={isEnd}
+                    >
+                      <KeyboardArrowRightIcon />
+                    </S.SwiperNext>
+                  </>
+                )}
           </S.AvtoParkList>
         </S.AutoParkInner>
       </S.AutoPark>

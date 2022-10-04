@@ -11,13 +11,16 @@ export const HomeFaqInner = styled.div`
 `
 
 export const HomeFaqTitle = styled.h3`
+  position: relative;
+
   margin-bottom: 40px;
+  padding: 6px;
 
   font-size: 30px;
   text-align: center;
   text-transform: uppercase;
 
   @media (max-width: 625px) {
-    font-size: 28px;
+    font-size: 24px;
   }
 `

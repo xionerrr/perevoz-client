@@ -49,6 +49,7 @@ export const FaqList = () => {
           })}
         </S.FaqListItems>
       </S.FaqListInner>
+      <S.FaqQuestion>?</S.FaqQuestion>
     </S.FaqList>
   )
 }

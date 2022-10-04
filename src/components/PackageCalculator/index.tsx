@@ -14,33 +14,42 @@ export const PackageCalculator = () => {
   return (
     <S.PackageCalculator>
       <S.PackageCalculatorInner>
-        <S.PackageCalculatorTitle>Калькулятор вартості</S.PackageCalculatorTitle>
-        <S.PackageCalculatorContainer>
-          <S.PackageCalculatorItem>
-            <S.PackageCalculatorItemLabel>Вага</S.PackageCalculatorItemLabel>
-            <S.PackageCalculatorItemInput
-              type='number'
-              value={weight}
-              onChange={handleChangeWeight}
-              placeholder='Вага посилки'
-            />
-          </S.PackageCalculatorItem>
-          <S.PackageCalculatorCharacter>*</S.PackageCalculatorCharacter>
-          <S.PackageCalculatorItem>
-            <S.PackageCalculatorItemLabel>Ціна, за 1 кг</S.PackageCalculatorItemLabel>
-            <S.PackageCalculatorItemInput type='number' value='2.5' disabled />
-          </S.PackageCalculatorItem>
-          <S.PackageCalculatorCharacter>=</S.PackageCalculatorCharacter>
-          <S.PackageCalculatorItem>
-            <S.PackageCalculatorItemLabel>Сума, €</S.PackageCalculatorItemLabel>
-            <S.PackageCalculatorItemInput
-              type='number'
-              value={+weight < 0 ? 0 : +weight * 2.5}
-              placeholder='Вартість посилки'
-              disabled
-            />
-          </S.PackageCalculatorItem>
-        </S.PackageCalculatorContainer>
+        <div
+          style={{
+            border: 'none',
+            padding: '18px',
+            backgroundColor: '#f7f5f5',
+            marginBottom: '24px',
+          }}
+        >
+          <S.PackageCalculatorTitle>Калькулятор вартості</S.PackageCalculatorTitle>
+          <S.PackageCalculatorContainer>
+            <S.PackageCalculatorItem>
+              <S.PackageCalculatorItemLabel>Вага</S.PackageCalculatorItemLabel>
+              <S.PackageCalculatorItemInput
+                type='number'
+                value={weight}
+                onChange={handleChangeWeight}
+                placeholder='Вага посилки'
+              />
+            </S.PackageCalculatorItem>
+            <S.PackageCalculatorCharacter>*</S.PackageCalculatorCharacter>
+            <S.PackageCalculatorItem>
+              <S.PackageCalculatorItemLabel>Ціна, за 1 кг</S.PackageCalculatorItemLabel>
+              <S.PackageCalculatorItemInput type='number' value='2.5' disabled />
+            </S.PackageCalculatorItem>
+            <S.PackageCalculatorCharacter>=</S.PackageCalculatorCharacter>
+            <S.PackageCalculatorItem>
+              <S.PackageCalculatorItemLabel>Сума, €</S.PackageCalculatorItemLabel>
+              <S.PackageCalculatorItemInput
+                type='number'
+                value={+weight < 0 ? 0 : +weight * 2.5}
+                placeholder='Вартість посилки'
+                disabled
+              />
+            </S.PackageCalculatorItem>
+          </S.PackageCalculatorContainer>
+        </div>
         <S.PackageCalculatorPhones>
           <S.PackageCalculatorPhoneLink href={'tel:+38-066-658-49-38'}>
             <CallIcon fontSize='small' />

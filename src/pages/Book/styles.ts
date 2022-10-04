@@ -10,7 +10,6 @@ export const BookInfoBox = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 100%;
   width: 90%;
   min-width: 320px;
   max-width: 968px;
@@ -19,9 +18,14 @@ export const BookInfoBox = styled.div`
 
 export const BookTitle = styled.h1`
   margin-bottom: 40px;
+  padding: 18px;
 
   font-size: 64px;
   color: #149708;
+  text-align: center;
+
+  background-color: #f7f5f5;
+  border: none;
 
   @media (max-width: 625px) {
     font-size: 48px;

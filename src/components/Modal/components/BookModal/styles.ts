@@ -29,6 +29,29 @@ export const BookModal = styled.div`
   }
 `
 
+export const JoinBox = styled.div`
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+
+  margin: 24px 0;
+`
+
+export const JoinLink = styled.a`
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: underline;
+
+  img {
+    width: 128px;
+  }
+`
+
 export const BookModalLoader = styled.div`
   z-index: 1000;
 
@@ -177,6 +200,7 @@ export const BookModalError = styled.div`
   width: 100%;
   padding: 0 24px;
 
+  font-size: 18px;
   color: #000;
   text-align: center;
 `

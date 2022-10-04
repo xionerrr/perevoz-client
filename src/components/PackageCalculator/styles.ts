@@ -36,7 +36,7 @@ export const PackageCalculatorContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 64px;
+  margin-bottom: 32px;
 
   @media (max-width: 625px) {
     flex-direction: column;
@@ -65,6 +65,7 @@ export const PackageCalculatorItemInput = styled.input`
   line-height: 1.38;
   color: #000;
 
+  background-color: #fff;
   border: 1px solid #c2c2c2;
   border-radius: 2px;
 

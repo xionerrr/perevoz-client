@@ -44,13 +44,48 @@ export const AutoParkInner = styled.div`
 `
 
 export const AvtoParkTitle = styled.h3`
+  position: relative;
+
   margin-bottom: 40px;
+  padding: 18px;
 
   font-size: 64px;
   color: #149708;
+  text-align: center;
+
+  background-color: #f7f5f5;
+  border: none;
 
   @media (max-width: 625px) {
     font-size: 48px;
+  }
+`
+export const AvtoParkEmblems = styled.div`
+  user-select: none;
+
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translate(0%, -37.5%);
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+
+  height: 48px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 1600px) {
+    position: relative;
+    left: 0;
+
+    width: 156px;
+    margin: 16px auto 0;
   }
 `
 

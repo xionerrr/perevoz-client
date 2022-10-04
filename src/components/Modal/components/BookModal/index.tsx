@@ -5,6 +5,7 @@ import { useLayoutEffect, useState } from 'react'
 
 import * as S from './styles'
 
+import fourth from 'assets/images/4.png'
 import { useStoreDispatch } from 'hooks/useStoreDispatch'
 import { useStoreSelector } from 'hooks/useStoreSelector'
 import { tripAPI } from 'services/trip'
@@ -13,6 +14,7 @@ import { I_Trip } from 'types/Destionation'
 
 export const BookModal = () => {
   const [tripInformation, setTripInformation] = useState<I_Trip>()
+  const [activeTab, setActiveTab] = useState<boolean>(false)
 
   const modalData = useStoreSelector((state) => state.ui.modal)
   const dispatch = useStoreDispatch()
@@ -27,21 +29,13 @@ export const BookModal = () => {
     date: modalData.data.date,
   })
 
-  const [placeOrder, { isSuccess: placeOrderSuccess }] = tripAPI.usePlaceOrderMutation()
-
   const handleCloseModal = () => {
     dispatch(closeModal())
+    setActiveTab(false)
   }
 
   const handlePlaceOrderConfirm = () => {
-    placeOrder({
-      startDestination: modalData.data.departure,
-      endDestination: modalData.data.arrival,
-      date: modalData.data.date,
-      name: modalData.data.userName,
-      phoneNumber: modalData.data.phone,
-      placeCounter: modalData.data.passengersCount,
-    })
+    setActiveTab(true)
   }
 
   useLayoutEffect(() => {
@@ -58,13 +52,21 @@ export const BookModal = () => {
   if (tripInformation && getTripInformationSuccess)
     return (
       <>
-        {placeOrderSuccess ? (
+        {activeTab ? (
           <S.BookModalLoader>
             <S.BookModalError>
-              Рейс успішно заброньовано.
+              Приєднуйтесь до спільноти у вайбер. <br /> Очікуйте дзвінок від менеджера.
               <S.BookModalErrorButton onClick={handleCloseModal}>
                 повернутись назад
               </S.BookModalErrorButton>
+              <S.JoinBox>
+                <S.JoinLink href='https://invite.viber.com/?g2=AQAUhBjIwzODN0jzExsy1Oek37UiGD9XkMBGGUbfANinl5FkSQGJtKVPKA1IoUU7'>
+                  <img src={fourth} alt='' />
+                </S.JoinLink>
+              </S.JoinBox>
+              <S.BookModalError style={{ fontSize: '21px', fontWeight: '600' }}>
+                Рейс успішно заброньовано.
+              </S.BookModalError>
             </S.BookModalError>
           </S.BookModalLoader>
         ) : (
@@ -138,7 +140,7 @@ export const BookModal = () => {
   return (
     <S.BookModalLoader>
       <S.BookModalError>
-        Рейс не знайдено, спробуйте вибрати інший день поїздки
+        Рейс не знайдено, спробуйте вибрати інший день поїздки.
         <S.BookModalErrorButton onClick={handleCloseModal}>
           повернутись назад
         </S.BookModalErrorButton>

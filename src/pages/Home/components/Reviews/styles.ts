@@ -23,7 +23,7 @@ export const ReviewsTitle = styled.h3`
   text-align: center;
 
   @media (max-width: 625px) {
-    font-size: 28px;
+    font-size: 24px;
   }
 `
 

@@ -7,18 +7,21 @@ interface I_FaqListProps {
 }
 
 export const FaqList = styled.div<I_FaqListProps>`
+  position: relative;
+
   width: 100%;
   max-width: 968px;
   margin: ${({ $locationPathname }) => ($locationPathname === ROUTES.faq ? '0' : '0 auto')};
 `
 
-export const FaqListInner = styled.div``
+export const FaqListInner = styled.div`
+  position: relative;
+  z-index: 2;
+`
 
 export const FaqListItems = styled.div``
 
-export const FaqListItem = styled.div`
-  border-top: 2px solid #f6f5f5;
-`
+export const FaqListItem = styled.div``
 
 interface I_FaqListItemControlProps {
   $isOpened: boolean
@@ -27,6 +30,8 @@ interface I_FaqListItemControlProps {
 export const FaqListItemControl = styled.div<I_FaqListItemControlProps>`
   cursor: pointer;
 
+  z-index: 2;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,13 +39,13 @@ export const FaqListItemControl = styled.div<I_FaqListItemControlProps>`
   padding-left: 20px;
 
   background-color: transparent;
-  border-bottom: ${({ $isOpened }) => ($isOpened ? '2px solid #149708' : 'none')};
+  border-bottom: ${({ $isOpened }) => ($isOpened ? '2px solid #149708' : '2px solid #149708')};
   box-shadow: ${({ $isOpened }) => ($isOpened ? '-1.1px 13px 35px 0 rgb(0 0 0 / 10%)' : 'none')};
 
-  transition: box-shadow 0.35s ease;
+  transition: all 0.35s ease;
 
   &:hover {
-    background-color: #f6f5f5;
+    background-color: #f7f5f5;
   }
 `
 
@@ -55,6 +60,7 @@ export const FaqListItemContent = styled.div<I_FaqListItemContentProps>`
 
   visibility: ${({ $isOpened }) => ($isOpened ? 'visible' : 'hidden')};
   opacity: ${({ $isOpened }) => ($isOpened ? '1' : '0')};
+  background-color: #fff;
 
   transition: all 0.5s ease;
 `
@@ -87,3 +93,23 @@ export const FaqListItemContentInner = styled.div`
 `
 
 export const FaqListItemContentDescription = styled.div``
+
+export const FaqQuestion = styled.div`
+  user-select: none;
+
+  position: absolute;
+  z-index: 0;
+  right: 16px;
+  bottom: 0;
+
+  overflow: hidden;
+
+  font-size: 725px;
+  color: #149708;
+
+  @media (max-width: 425px) {
+    bottom: 96px;
+
+    font-size: 525px;
+  }
+`

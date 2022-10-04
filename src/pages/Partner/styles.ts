@@ -31,9 +31,14 @@ export const PartnerInner = styled.div`
 
 export const PartnerTitle = styled.h3`
   margin-bottom: 40px;
+  padding: 18px;
 
   font-size: 64px;
   color: #149708;
+  text-align: center;
+
+  background-color: #f7f5f5;
+  border: none;
 
   @media (max-width: 625px) {
     font-size: 48px;

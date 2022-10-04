@@ -69,6 +69,10 @@ export const FooterJoinLink = styled.a`
   font-weight: 500;
   color: #fff;
   text-decoration: underline;
+
+  img {
+    width: 128px;
+  }
 `
 
 export const FooterBookBox = styled.div`

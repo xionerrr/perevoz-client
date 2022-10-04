@@ -1,3 +1,4 @@
+import { Form } from './components/Form'
 import { adventagesList } from './data'
 import * as S from './styles'
 
@@ -28,6 +29,7 @@ export const Services = () => {
           </S.Adventages>
         </S.ServicesInner>
       </S.Services>
+      <Form />
       <S.Book>
         <S.BookingInner>
           <Booking />

@@ -80,9 +80,8 @@ export const tripAPI = createApi({
     }),
     placeOrder: build.mutation<void, I_PlaceOrderRequest>({
       query: (body) => ({
-        url: `api/PlaceOrder/call/request`,
+        url: `api/Order/reservation/request?startDestination=${body.startDestination}&endDestination=${body.endDestination}&date=${body.date}&name=${body.name}&phoneNumber=${body.phoneNumber}&placeCounter=${body.placeCounter}`,
         method: 'POST',
-        body,
       }),
     }),
   }),

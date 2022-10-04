@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 export const Features = styled.div`
   padding: 72px 0;
+
+  background-color: #f6f5f5;
 `
 
 export const FeaturesInner = styled.div`
@@ -19,7 +21,7 @@ export const FeaturesTitle = styled.h3`
   text-transform: uppercase;
 
   @media (max-width: 625px) {
-    font-size: 28px;
+    font-size: 24px;
   }
 `
 

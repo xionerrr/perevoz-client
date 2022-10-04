@@ -1,6 +1,7 @@
 {
   "name": "perevoz-client",
   "version": "0.0.0",
+  "homepage": "https://baltictransfer.com.ua/",
   "type": "module",
   "scripts": {
     "dev": "vite",

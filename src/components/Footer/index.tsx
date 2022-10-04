@@ -4,6 +4,7 @@ import { useMediaQuery } from '@mui/material'
 import { footerSocialLinks } from './data'
 import * as S from './styles'
 
+import fourth from 'assets/images/4.png'
 import { E_BreakPoints } from 'utils/constants/breakpoints'
 
 export const Footer = () => {
@@ -18,7 +19,7 @@ export const Footer = () => {
       <S.FooterInner>
         <S.FooterJoinBox>
           <S.FooterJoinLink href='https://invite.viber.com/?g2=AQAUhBjIwzODN0jzExsy1Oek37UiGD9XkMBGGUbfANinl5FkSQGJtKVPKA1IoUU7'>
-            Приєднуйтесь до спільноти у VIBER
+            <img src={fourth} alt='' />
           </S.FooterJoinLink>
         </S.FooterJoinBox>
         {!isTablet && (
